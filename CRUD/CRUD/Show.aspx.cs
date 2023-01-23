@@ -23,11 +23,11 @@ namespace CRUD
                        {
                            customer.customerName,
                            customer.Age,
-                           customer.Phone,
-                           customer.Email,
                            city.cityName,
+                           customer.Phone,
+                           customer.Email,                           
                            customer.Photo,
-                           //Photo= HttpUtility.HtmlDecode($"<img src='{customer.Photo}'/>")
+                           
                        }).ToList();
             allUser.DataSource = all;
             allUser.DataBind();

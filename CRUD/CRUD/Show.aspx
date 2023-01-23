@@ -82,7 +82,7 @@
                     </td>
                 </tr>
             </table>
-            <asp:GridView ID="allUser" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="allUser" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
 
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
@@ -96,10 +96,14 @@
                 <SortedDescendingCellStyle BackColor="#E9EBEF" />
                 <SortedDescendingHeaderStyle BackColor="#4870BE" />
                 <Columns>
+                    <asp:BoundField DataField="customerName" HeaderText="Customer Name" />
+                    <asp:BoundField DataField="Age" HeaderText="Age" />
+                    <asp:BoundField DataField="cityName" HeaderText="City" />
                     <asp:ImageField DataImageUrlField="Photo" HeaderText="Photo">
                         <ControlStyle Height="100px" Width="100px" />
                     </asp:ImageField>
-                     <asp:HyperLinkField DataNavigateUrlFields="CustomerId" DataNavigateUrlFormatString="Delete.aspx?ID={0}" Text="Delete" />
+                    <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                    <asp:BoundField DataField="Email" HeaderText="Email" />
                 </Columns>
                 
                 
