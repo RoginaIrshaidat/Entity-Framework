@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TasksModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="cityID" />
+          </Key>
+          <Property Name="cityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cityName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customerName" Type="varchar" MaxLength="150" />
+          <Property Name="Age" Type="int" />
+          <Property Name="City" Type="int" />
+          <Property Name="Phone" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Photo" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK__Customers__City__3F466844">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="cityID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TasksModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Customers__City__3F466844" Association="Self.FK__Customers__City__3F466844">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TasksModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="cityID" />
+          </Key>
+          <Property Name="cityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__City__3F466844" FromRole="Cities" ToRole="Customers" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerId" />
+          </Key>
+          <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customerName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="City" Type="Int32" />
+          <Property Name="Phone" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="City1" Relationship="Self.FK__Customers__City__3F466844" FromRole="Customers" ToRole="Cities" />
+        </EntityType>
+        <Association Name="FK__Customers__City__3F466844">
+          <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="cityID" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="City" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TasksEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <AssociationSet Name="FK__Customers__City__3F466844" Association="Self.FK__Customers__City__3F466844">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TasksModelStoreContainer" CdmEntityContainer="TasksEntities1">
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="TasksModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="cityID" ColumnName="cityID" />
+                <ScalarProperty Name="cityName" ColumnName="cityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="TasksModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="customerId" ColumnName="customerId" />
+                <ScalarProperty Name="customerName" ColumnName="customerName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

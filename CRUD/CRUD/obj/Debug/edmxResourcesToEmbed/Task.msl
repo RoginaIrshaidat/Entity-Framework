@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TasksModelStoreContainer" CdmEntityContainer="TasksEntities1">
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="TasksModel.City">
+        <MappingFragment StoreEntitySet="Cities">
+          <ScalarProperty Name="cityID" ColumnName="cityID" />
+          <ScalarProperty Name="cityName" ColumnName="cityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="TasksModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="customerId" ColumnName="customerId" />
+          <ScalarProperty Name="customerName" ColumnName="customerName" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
